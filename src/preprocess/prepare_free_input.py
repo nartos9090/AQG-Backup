@@ -74,7 +74,7 @@ def prepare_featured_input(input_text, output_file_name='free_input.txt', manual
     else:
         try:
             entities = get_ner(input_text)['entities']
-            postags = get_pos_tag(input_text)['postags']
+            postags = get_pos_tag(input_text)['tags']
         except TimeoutError as e:
             print('Unable to invoke the NE and/or Pos Tag API. Please check your VPN or your internet connection:', e)
             exit(1)
@@ -92,6 +92,7 @@ def prepare_featured_input(input_text, output_file_name='free_input.txt', manual
             )
         is_cased_sents.append(is_cased)
 
+    print(tokenized_sents)
     tokenized_sents = np.array(tokenized_sents)
 
     # YES, DIRTY CODE. But have no choice to force the numpy to keep the input as array-of-list instead of pure array

@@ -28,6 +28,8 @@ def load_txt(filename):
 
 
 def print_input_along_feature(input, feature):
+    print(input)
+    print(feature)
     concated = np.concatenate((np.expand_dims(input, axis=0), np.array(feature.tolist())), axis=0).T
     result = []
     for concated_token in concated:

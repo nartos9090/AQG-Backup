@@ -44,28 +44,54 @@ api_key_pos=""
  
 
 
-def get_pos_tag(text):
-    data = {
-        "version": "v2",
-        "text": text,
-    }
-    headers = {
-        "Content-Type": "application/json",
-         "x-api-key": api_key_pos
-    }
-    response = requests.post(url_pos, headers=headers, json=data)
-    jsondata=response.json()
-    return jsondata['sentences']['sentences'][0]
+# def get_pos_tag(text):
+#     data = {
+#         "version": "v2",
+#         "text": text,
+#     }
+#     headers = {
+#         "Content-Type": "application/json",
+#          "x-api-key": api_key_pos
+#     }
+#     response = requests.post(url_pos, headers=headers, json=data)
+#     jsondata=response.json()
+#     return jsondata['sentences']['sentences'][0]
+
+# def get_ner(text):
+#     data = {
+#         "version": "v2",
+#         "text": text,
+#     }
+#     headers = {
+#         "Content-Type": "application/json",
+#          "x-api-key": api_key_ner
+#     }
+#     response = requests.post(url_ner, headers=headers, json=data)
+#     jsondata=response.json()
+#     return jsondata
+
+
+url_ner = "http://localhost:5000/ner"
+url_pos = "http://localhost:5000/pos"
 
 def get_ner(text):
     data = {
-        "version": "v2",
         "text": text,
     }
     headers = {
-        "Content-Type": "application/json",
-         "x-api-key": api_key_ner
+        # "Content-Type": "application/json",
     }
-    response = requests.post(url_ner, headers=headers, json=data)
-    jsondata=response.json()
+    response = requests.post(url_ner, headers=headers, data=data)
+    jsondata = response.json()
+    return jsondata
+
+def get_pos_tag(text):
+    data = {
+        "text": text,
+    }
+    headers = {
+        # "Content-Type": "application/json",
+    }
+    response = requests.post(url_pos, headers=headers, data=data)
+    jsondata = response.json()
     return jsondata
